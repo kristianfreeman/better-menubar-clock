@@ -4,7 +4,7 @@
   "description": "A better menubar clock for OS X",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "package": "rm -rf ./BetterMenubarClock-darwin-x64 && ./node_modules/.bin/electron-packager . BetterMenubarClock --platform darwin --arch=x64 --ignore=.DS_Store --overwrite --prune"
   },
   "author": "Kristian Freeman <kristian@kristianfreeman.com>",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "electron-prebuilt": "^1.0.2"
   },
   "dependencies": {
+    "lodash": "^4.15.0",
     "moment": "^2.14.1"
   }
 }

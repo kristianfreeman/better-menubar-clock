@@ -23,4 +23,4 @@ app.on('ready', function(){
   updateClock(appTray)
 })
 
-// app.dock.hide()
+app.dock.hide()
