@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' type="text/css" href="./pure-min.css"></link>
+    <style>
+      body { margin: 20px; }
+    </style>
+  </head>
+
+  <body>
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3>Preferences</h3>
+      </div>
+
+      <div class="pure-u-1-1">
+        <form class="pure-form">
+          <label for="date_format">
+            Date Format
+            <input
+              id="date_format"
+              placeholder="Date Format"
+              type="text"
+            ></input>
+          </label>
+          <button class='pure-button pure-button-primary' id="save" type="submit">
+            Save
+          </button>
+
+          <p>Example: <span id="example"></span></p>
+          <p>Use <a href="http://momentjs.com/docs/#/displaying/">moment.js</a> for formatting.</p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var moment = require('moment')
+
+      updateDateFormat = function(format) {
+        document.querySelector('#date_format').value = format
+        document.querySelector('#example').innerHTML = moment().format(format)
+      }
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+        require('electron').ipcRenderer.on('receiveDateFormat', (event, format) => {
+          updateDateFormat(format)
+        })
+
+        var input = document.querySelector('#date_format')
+        input.addEventListener('input', function() {
+          updateDateFormat(input.value)
+        })
+
+        var submit = document.querySelector('#save')
+        submit.addEventListener('click', function(event) {
+          require('electron').ipcRenderer.send('sendDateFormat', input.value)
+          event.preventDefault()
+        })
+      })
+    </script>
+  </body>
+</html>
