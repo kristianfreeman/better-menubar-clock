@@ -9,7 +9,7 @@
   "author": "Kristian Freeman <kristian@kristianfreeman.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron-packager": "^7.0.4",
+    "electron-packager": "^7.7.0",
     "electron-prebuilt": "^1.0.2"
   },
   "dependencies": {
